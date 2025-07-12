@@ -1,16 +1,94 @@
-import {useEffect} from "react";
-
+import React, { useState, useEffect, useRef } from 'react';
 import { Mail } from "lucide-react";
 import img from "../assets/image1.jpg";
-const Home = () => {
-  useEffect(()=>{
 
-  }, [])
+const TypingAnimation: React.FC = () => {
+  const textArray = [
+          "je suis développeur fullstack avec 3ans d'expérience, utilisant React et Node JS. Contactez-moi si vous avez besoin de mes services",
+  ];
+
+  const typedDelay = 200;
+  const erasingDelay = 100;
+  const newTextDelay = 2000;
+
+  const [typedText, setTypedText] = useState('');
+  const [charIndex, setCharIndex] = useState(0);
+  const [textArrayIndex, setTextArrayIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+  
+  const timeoutRef = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    if (textArray.length) {
+      timeoutRef.current = setTimeout(() => {
+        type();
+      }, newTextDelay + 250);
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isTyping) {
+      if (charIndex < textArray[textArrayIndex].length) {
+        timeoutRef.current = setTimeout(() => {
+          setTypedText(prev => prev + textArray[textArrayIndex].charAt(charIndex));
+          setCharIndex(prev => prev + 1);
+        }, typedDelay);
+      } else {
+        setIsTyping(false);
+        timeoutRef.current = setTimeout(() => {
+          erase();
+        }, newTextDelay);
+      }
+    } else {
+      if (charIndex > 0) {
+        timeoutRef.current = setTimeout(() => {
+          setTypedText(textArray[textArrayIndex].substring(0, charIndex - 1));
+          setCharIndex(prev => prev - 1);
+        }, erasingDelay);
+      } else {
+        setIsTyping(true);
+        setTextArrayIndex(prev => (prev + 1) % textArray.length);
+        timeoutRef.current = setTimeout(() => {
+          type();
+        }, typedDelay + 1100);
+      }
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [charIndex, textArrayIndex, isTyping]);
+
+  const type = () => {
+    setIsTyping(true);
+  };
+
+  const erase = () => {
+    setIsTyping(false);
+  };
+
+  return (
+    <>
+      {typedText}
+      <span className={`cursor ${isTyping ? 'typing' : ''}`}>&nbsp;</span>
+    </>
+  );
+};
+
+const Home = () => {
   return (
     <div
       className="flex flex-col-reverse md:flex-row 
-         justify-center items-center md:my-32 my-10
-         mt-4 md:mt-0 "
+         justify-center items-center md:my-36 my-10
+         mt-4 md:mt-6 relative"
     >
       <div className="flex flex-col ">
         <h1
@@ -19,17 +97,13 @@ const Home = () => {
         >
           Bonjour,
           <br />
-          je suis <span className="text-[#29d9d5]">Conrade Dev</span>
+          je suis <span className="text-first-color">Conrade Dev</span>
         </h1>
         <p className="my-4 text-md text-center md:text-left typed-text">
-          je suis développeur fullstack
-          <br />
-          avec 3ans d'expérience, utilisant React
-          <br />
-          et Node JS. Contactez-moi si vous avez besoin de mes services
-          <span className="cursorWriting">&nbsp;</span>
+         
+          <TypingAnimation />
         </p>
-        <a href="" className="btn btn-accent md:w-fit">
+        <a href="#contact" className="btn btn-accent md:w-fit">
           <Mail className="w-5 h-5" />
           Contactez-moi
         </a>
@@ -39,7 +113,7 @@ const Home = () => {
           src={img}
           alt=""
           className="object-cover 
-        w-72 h-72 md:w-96 md:h-96 border-8 border-[#29d9d5]"
+        w-72 h-72 md:w-96 md:h-96 border-8 border-first-color"
           style={{
             borderRadius: "30% 70% 70% 30%/65% 62% 38% 33%",
           }}
@@ -48,4 +122,5 @@ const Home = () => {
     </div>
   );
 };
+
 export default Home;

@@ -8,14 +8,15 @@ const Navbar=()=>{
     }
     return (
         <div className={`flex justify-center md:justify-between 
-        items-center p-4 z-50 ${showLinks? "show-navbar":"hide-nav"}`}>
+        items-center p-4 z-50 bg-first-color  md:px-[10%] ${showLinks? "show-navbar":"hide-nav"}`}>
         <a href="#index" className="flex items-center font-bold text-3xl md:text-xl">
             <Container className="mr-2"/>
             Conrade
-            <span className="text-[#29d9d5]">DEV</span>
+            <span className="text-first-color">DEV</span>
         </a>
-        <ul  className="md:flex space-x-4 navbar-links right-[-10px]">
-            <li className="navbar-item  slideInDown-1">
+        <ul  className=" navbar-links ">
+           <div className="mt-20 md:mt-0 md:flex space-x-4 ">
+             <li className="navbar-item  slideInDown-1">
                 <a href="#Accueil"
                      className="btn btn-sm btn-ghost navbar-link"
                 >
@@ -50,10 +51,22 @@ const Navbar=()=>{
                     Mes projets
                 </a>
             </li>
+           </div>
         </ul>
         <button className="navbar-burger" onClick={handleShowLinks}>
             <span className="burger-bar" ></span>
         </button>
+         {/* systeme overlap pour la navigation  en mobile  */}
+        <div>
+        {showLinks && (
+          <div 
+            className="fixed inset-0  bg-black bg-opacity-50 md:hidden"
+            onClick={handleShowLinks}
+          >
+          </div>
+        )}
+        </div>
+       
         </div>
         
     )

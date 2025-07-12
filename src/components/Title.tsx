@@ -4,7 +4,7 @@ interface TitleProp {
 
 const Title=({title}: TitleProp)=>{
     return (
-        <h1 className="uppercase font-bold text-center scroll-animation">
+        <h1 className="uppercase font-bold text-center ">
             {title} 
         </h1>
     )
