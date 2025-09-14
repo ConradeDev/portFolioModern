@@ -1,4 +1,4 @@
-import { motion, useScroll } from "motion/react"
+import { motion, useAnimation, useInView, useScroll } from "motion/react"
 import About from "../components/About"
 import Contact from "../components/contact"
 import Diplome from "../components/Diplome"
@@ -7,11 +7,24 @@ import Footer from "../components/Footer"
 import Header from "../components/Hearder"
 import Home from "../components/Home"
 
-import Projet from "../components/projet"
+import Projet from "../components/ProjetPortofolio"
+import { useEffect, useRef } from "react"
 
 
 const Homes = () => {
-   const { scrollYProgress } = useScroll()
+   const { scrollYProgress } = useScroll();
+
+
+     const ref=useRef(null);
+     const isInView=useInView(ref,{once:true});
+   
+     const mainControls=useAnimation();
+   
+     useEffect(()=>{
+       if (isInView){
+         mainControls.start("visible");
+       }
+     });
   return (
     <div 
       id="index">
@@ -37,7 +50,19 @@ const Homes = () => {
          {/* Header */}
       <Header/>
       </div>
-      <div className="md:px-[5%] p-1 pt-24 " id="Accueil">
+      
+      <motion.div
+      ref={ref}
+      variants={{
+        hidden:{opacity:0, y:75},
+        visible:{opacity:1, y:0},
+      }}
+      initial="hidden"
+      animate={mainControls}
+      transition={{duration:1, delay:0.5
+      }}
+      >
+         <div className="md:px-[5%] p-1 pt-24 " id="Accueil">
          <Home/>
       </div>
       <div className="" id="About">
@@ -56,6 +81,7 @@ const Homes = () => {
       <div className=" md:px-[10%] "  id="contact">
          <Contact/>
       </div>
+      </motion.div>
       <div className=" md:px-[10%] "  id="Footer">
          <Footer/>
       </div>

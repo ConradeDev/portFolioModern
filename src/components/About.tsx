@@ -2,8 +2,7 @@ import { CalendarSync, LetterText, Paintbrush } from "lucide-react";
 import Title from "./Title";
 import img from "../assets/image1.jpg";
 
-
-import { motion, useScroll } from "motion/react"
+import { motion, useScroll } from "motion/react";
 
 const aboutSections = [
   {
@@ -32,9 +31,10 @@ const About = () => {
   const { scrollYProgress } = useScroll();
 
   return (
-    <div className=" bg-base-300 p-10 mb-4 md:mb-10 ml-10 mr-10 ">
+    <div>
       <Title title="A Propos" />
-      <div className="md:h-screen flex justify-center p-4 mb-0 items-center">
+      <div className=" bg-base-300 p-10 mb-4 md:mb-5 ml-5 mr-5">
+      <div className=" flex justify-center p-4 mb-0 items-center">
         <div className="hidden md:block ">
           <img
             src={img}
@@ -44,23 +44,26 @@ const About = () => {
         </div>
         <motion.div style={{ scaleX: scrollYProgress }} />
 
-
         <div className="md:ml-4 space-y-4">
           {aboutSections.map((section) => (
-            <div key={section.id} className="flex flex-col
-            bg-base-100 p-5 rounded-xl md:flex-row items-center
-            md:w-96  mb-4  hover:scale-105">
+            <motion.div
+              key={section.id}
+              className="flex flex-col bg-base-100 p-5 rounded-xl md:flex-row items-center md:w-96  mb-4"
+              initial={{opacity:0}}
+              whileInView={{opacity:1}}
+              whileHover={{scale:1.1}}
+            >
               <div className="mb-2 md:mb-0">{section.icon}</div>
               <div className="md:ml-4 text-center md:text-left">
                 <h2 className="text-xl font-bold mb-1">{section.title}</h2>
                 <p className="text-sm">{section.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </div>
+    </div>
   );
 };
 export default About;
-

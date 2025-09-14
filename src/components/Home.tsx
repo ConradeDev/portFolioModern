@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mail } from "lucide-react";
 import img from "../assets/image1.jpg";
+import { motion, useAnimation, useInView } from 'motion/react';
 
 const TypingAnimation: React.FC = () => {
   const textArray = [
@@ -84,13 +85,23 @@ const TypingAnimation: React.FC = () => {
 };
 
 const Home = () => {
+  const ref=useRef(null);
+  const isInView=useInView(ref,{once:false});
+
+  const mainControls=useAnimation();
+
+  useEffect(()=>{
+    if (isInView){
+      mainControls.start("visible");
+    }
+  },[isInView]);
   return (
-    <div
+    <motion.div
       className="flex flex-col-reverse md:flex-row 
-         justify-center items-center md:my-36 my-10
-         mt-4 md:mt-6 relative"
+         justify-center items-center md:my-3
+         mt-4 md:mt-6 relative "
     >
-      <div className="flex flex-col ">
+      <div className="flex flex-col md:w-2/3">
         <h1
           className="font-bold text-5xl md:text-6xl 
             text-center md:text-left mt-4 md:mt-0"
@@ -108,7 +119,7 @@ const Home = () => {
           Contactez-moi
         </a>
       </div>
-      <div className="md:ml-60 animate-pulse">
+      <div className="md:ml-60 animate-pulse  md:w-1/3">
         <img
           src={img}
           alt=""
@@ -119,7 +130,7 @@ const Home = () => {
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

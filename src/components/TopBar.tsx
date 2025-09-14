@@ -6,7 +6,7 @@ const Topbar = () => {
       <div className=" mx-auto flex justify-betwen items-center py-3 px-4">
         <div className="flex items-center space-x-4 text-first-color">
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/conrade.bossoudaho/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-50">
@@ -20,7 +20,7 @@ const Topbar = () => {
             <Instagram className="h-5 w-5" />
           </a>
           <a 
-            href="https://www.facebook.com"
+            href="https://www.linkedin.com/in/conrade-bossoudaho-89a009243"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-50">
