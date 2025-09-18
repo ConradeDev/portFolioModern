@@ -65,7 +65,7 @@ export default function App() {
       transition={{duration:1, delay:0.5
       }}
       >
-         <div className="md:px-[5%] p-1 pt-24 " id="Accueil">
+      <div className="md:px-[5%] p-1 pt-24 " id="Accueil">
          <Home/>
       </div>
       <div className="" id="About">
@@ -84,10 +84,11 @@ export default function App() {
       <div className=" md:px-[10%] "  id="contact">
          <Contact/>
       </div>
-      </motion.div>
+
       <div className=" md:px-[10%] "  id="Footer">
          <Footer/>
       </div>
+      </motion.div>
     </div>
   )
 }
