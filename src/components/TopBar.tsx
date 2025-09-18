@@ -1,4 +1,4 @@
-import { Facebook, Github, Instagram, Linkedin,  } from "lucide-react";
+import { Facebook, Github,  Linkedin,  } from "lucide-react";
 
 const Topbar = () => {
   return (

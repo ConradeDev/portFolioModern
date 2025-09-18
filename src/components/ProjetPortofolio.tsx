@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import Title from "./Title";
-import { Github, Video, X } from "lucide-react";
+import { ExternalLink, Github, Video, X } from "lucide-react";
 
 // Importez vos images
 import gestionTaskImg from "../assets/projects/gestionTask.png";
@@ -19,6 +19,7 @@ interface Project {
   demoLink: string;
   repoLink: string;
   image: string;
+  lienSite: string;
 }
 
 
@@ -71,6 +72,21 @@ const AnimatedProject: React.FC<{
             </span>
           ))}
         </div>
+
+        {/* Affichage conditionnel du lien du site */}
+        {project.lienSite && (
+          <div className="mb-3">
+            <a 
+              className="btn btn-primary w-full"
+              href={project.lienSite}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="w-4 mr-2" />
+              Lien vers le site
+            </a>
+          </div>
+        )}
         <div className="flex">
           <a className="btn btn-accent w-2/3"
             href={project.demoLink}
@@ -97,40 +113,46 @@ const AnimatedProject: React.FC<{
 const projects: Project[] = [
   {
     id: 1,
-    title: "Gestionnaire de tâches",
-    description: "Une plateforme intuitive qui transforme la gestion des projets d'équipe. Cette application élimine la complexité en offrant un espace centralisé où les équipes peuvent prioriser leur travail, visualiser les progrès et atteindre leurs objectifs plus efficacement. Développée avec une stack moderne pour des performances et une fiabilité optimales.",
-    technologies: ["HTML", "Node.js", "Tailwind CSS","TypeScript"],
-    demoLink: "https://www.loom.com/share/6e2f071b8bf4446c959319605fbfab0e?sid=3b658254-4c4e-43ed-b238-095df103ec3c",
-    repoLink: "https://github.com/Jo-194/GESTION-",
-    image: gestionTaskImg,
-  },
-  {
-    id: 2,
-    title: "Plateforme E-commerce Full-Stack",
-    description: "Développement d'une boutique en ligne complète et dynamique. Cette application full-stack allie un frontend réactif et moderne construit avec React et Tailwind CSS à un backend robuste développé avec Node.js, ExpressJS et TypeScript pour offrir une expérience d'achat fluide et sécurisée.",
-    technologies: ["html","css","Tailwind CSS","React","ExpressJS" ,"TypeScript", "nodeJS"],
-    demoLink: "https://www.loom.com/share/abb94f14c0d849a6840560d257c1b239?sid=0aed6334-fae7-4205-ade3-7530ad4d1529",
-    repoLink: "https://github.com/ConradeDev/projetEcommerceSimplon",
-    image: plateformShop,
-  },
-  {
-    id: 3,
-    title: "Portfolio interactif",
-    description: "Création d'une expérience en ligne unique qui sert à la fois de vitrine et de démonstration de compétences. Ce portfolio allie un design soigné, une ergonomie intuitive et des performances optimisées, le tout construit avec les technologies modernes React, TypeScript et Tailwind CSS pour un résultat professionnel et engageant.",
-    technologies:  ["HTML", "JavaScript","react","Tailwind css","TypeScript"],
-    demoLink: "#",
-    repoLink: "https://github.com/ConradeDev/portFolioModern",
-    image: portFolioImg,
-  },
-  {
-    id: 4,
     title: "Jeu de Devinette de Nombre",
     description: "Développement d'un jeu interactif et ludique où le joueur doit trouver un nombre mystère généré aléatoirement. Une interface intuitive, des indices en temps réel et un compteur de tentatives rendent l'expérience engageante et addictive.",
     technologies: ["HTML", "CSS", "JavaScript"],
     demoLink: "https://www.loom.com/share/17237ccbd80542af8404f59a6f4fcf99?sid=1b90ec66-f3c0-45a8-b5ee-0aed0d4c380e",
     repoLink: "https://github.com/ConradeDev/gameNumber",
     image: gameNumberImg,
+    lienSite:"https://game-number-one.vercel.app/"
   },
+  {
+    id: 2,
+    title: "Portfolio interactif",
+    description: "Création d'une expérience en ligne unique qui sert à la fois de vitrine et de démonstration de compétences. Ce portfolio allie un design soigné, une ergonomie intuitive et des performances optimisées, le tout construit avec les technologies modernes React, TypeScript et Tailwind CSS pour un résultat professionnel et engageant.",
+    technologies:  ["HTML", "JavaScript","react","Tailwind css","TypeScript"],
+    demoLink: "#",
+    repoLink: "https://github.com/ConradeDev/portFolioModern",
+    image: portFolioImg,
+    lienSite:"",
+  },
+  {
+    id: 3,
+    title: "Gestionnaire de tâches",
+    description: "Une plateforme intuitive qui transforme la gestion des projets d'équipe. Cette application élimine la complexité en offrant un espace centralisé où les équipes peuvent prioriser leur travail, visualiser les progrès et atteindre leurs objectifs plus efficacement. Développée avec une stack moderne pour des performances et une fiabilité optimales.",
+    technologies: ["HTML", "Node.js", "Tailwind CSS","TypeScript"],
+    demoLink: "https://www.loom.com/share/6e2f071b8bf4446c959319605fbfab0e?sid=3b658254-4c4e-43ed-b238-095df103ec3c",
+    repoLink: "https://github.com/Jo-194/GESTION-",
+    image: gestionTaskImg,
+    lienSite:"",
+  },
+  {
+    id: 4,
+    title: "Plateforme E-commerce Full-Stack",
+    description: "Développement d'une boutique en ligne complète et dynamique. Cette application full-stack allie un frontend réactif et moderne construit avec React et Tailwind CSS à un backend robuste développé avec Node.js, ExpressJS et TypeScript pour offrir une expérience d'achat fluide et sécurisée.",
+    technologies: ["html","css","Tailwind CSS","React","ExpressJS" ,"TypeScript", "nodeJS"],
+    demoLink: "https://www.loom.com/share/abb94f14c0d849a6840560d257c1b239?sid=0aed6334-fae7-4205-ade3-7530ad4d1529",
+    repoLink: "https://github.com/ConradeDev/projetEcommerceSimplon",
+    image: plateformShop,
+    lienSite:"",
+  },
+
+
   // {
   //   id: 5,
   //   title: "Système de réservation de salles",
@@ -221,10 +243,11 @@ const ProjetPortfolio: React.FC = () => {
     setKeyboardNav(false);
   }, [selectedIndex, keyboardNav]);
 
-  const handleProjectSelect = (project: Project, index: number) => {
-    setSelectedIndex(index);
-  };
 
+
+  const handleProjectSelect = (_project: Project, index: number) => {
+  setSelectedIndex(index);
+};
   const handleImageClick = (id: number | null) => {
     if (id !== null) {
       setSelectedId(id);

@@ -23,18 +23,21 @@ const Diplome = () => {
     { id: 4, title: "attestation Unicef", image:attestationUnicef },
   ];
 
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleImageClick = (id) => {
+  const handleImageClick = (id: number | null) => {
     if (!isExpanded) {
+      // Si on n'est pas expandé, on set l'ID et on expand
       setSelectedId(id);
       setIsExpanded(true);
     } else {
+      // Si on est déjà expandé, on réduit
       setIsExpanded(false);
+      // Optionnel: réinitialiser l'ID à null
+      setSelectedId(null);
     }
   };
-
   return (
     <div>
       <Title title="Diplome et Formation" />

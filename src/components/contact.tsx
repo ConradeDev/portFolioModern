@@ -249,24 +249,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <style tsx>{`
-        @keyframes rotate {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-        
-        .animate-rotate {
-          animation: rotate 7s linear infinite;
-        }
-        
-        .animation-delay-3s {
-          animation-delay: 3s;
-        }
-      `}</style>
+      
     </div>
   );
 };

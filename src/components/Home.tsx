@@ -17,7 +17,8 @@ const TypingAnimation: React.FC = () => {
   const [textArrayIndex, setTextArrayIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  // Correction de la déclaration du useRef
+const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (textArray.length) {
