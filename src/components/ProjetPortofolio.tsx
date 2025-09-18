@@ -4,12 +4,12 @@ import Title from "./Title";
 import { Github, Video, X } from "lucide-react";
 
 // Importez vos images
-import img1 from "../assets/projects/1.png";
-import img2 from "../assets/projects/2.png";
-import img3 from "../assets/projects/3.png";
-import img4 from "../assets/projects/4.png";
-import img5 from "../assets/projects/5.png";
-import img6 from "../assets/projects/6.png";
+import gestionTaskImg from "../assets/projects/gestionTask.png";
+import plateformShop from "../assets/projects/plateformShop.png";
+import portFolioImg from "../assets/projects/portFolio.png";
+import gameNumberImg from "../assets/projects/gameNumber.png";
+// import img5 from "../assets/projects/5.png";
+// import img6 from "../assets/projects/6.png";
 
 interface Project {
   id: number;
@@ -21,70 +21,16 @@ interface Project {
   image: string;
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Gestionnaire de tâches",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
-    technologies: ["React", "Node.js", "Tailwind CSS"],
-    demoLink: "#",
-    repoLink: "#",
-    image: img1,
-  },
-  {
-    id: 2,
-    title: "Plateforme E-commerce",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
-    technologies: ["Next.js", "TypeScript", "Prisma"],
-    demoLink: "#",
-    repoLink: "#",
-    image: img2,
-  },
-  {
-    id: 3,
-    title: "Portfolio interactif",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    demoLink: "#",
-    repoLink: "#",
-    image: img3,
-  },
-  {
-    id: 4,
-    title: "Application de Chat en temps réel",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
-    technologies: ["React", "Socket.io", "Express.js"],
-    demoLink: "#",
-    repoLink: "#",
-    image: img4,
-  },
-  {
-    id: 5,
-    title: "Système de réservation de salles",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
-    technologies: ["Next.js", "MongoDB", "Chakra UI"],
-    demoLink: "#",
-    repoLink: "#",
-    image: img5,
-  },
-  {
-    id: 6,
-    title: "Analyseur de sentiment",
-    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
-    technologies: ["Python", "Flask", "NLTK"],
-    demoLink: "#",
-    repoLink: "#",
-    image: img6,
-  },
-];
+
 
 const AnimatedProject: React.FC<{
   project: Project;
   index: number;
   onSelect: (project: Project, index: number) => void;
+  onImageClick: (id: number) => void;
   isSelected: boolean;
   delay?: number;
-}> = ({ project, index, onSelect, isSelected, delay = 0 }) => {
+}> = ({ project, index, onSelect, onImageClick, isSelected, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.5, once: true });
 
@@ -100,11 +46,19 @@ const AnimatedProject: React.FC<{
     >
       <div className={`p-4 bg-[#111] rounded-lg ${isSelected ? "bg-[#222] border border-accent" : ""}`}>
         <div>
-          <img
-            src={project.image}
-            alt={project.title}
-            className="object-cover w-full h-56 rounded-xl"
-          />
+          <motion.div
+            layoutId={`image-container-${project.id}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onImageClick(project.id);
+            }}
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="object-cover w-full h-96 rounded-xl cursor-pointer"
+            />
+          </motion.div>
         </div>
         <div>
           <h1 className="my-2 font-bold text-white">{project.title}</h1>
@@ -118,11 +72,17 @@ const AnimatedProject: React.FC<{
           ))}
         </div>
         <div className="flex">
-          <a className="btn btn-accent w-2/3" href={project.demoLink}>
+          <a className="btn btn-accent w-2/3"
+            href={project.demoLink}
+            target="_blank"
+            >
             Demo
             <Video className="w-4 ml-2" />
           </a>
-          <a className="btn btn-neutral ml-2 w-1/3" href={project.repoLink}>
+          <a className="btn btn-neutral ml-2 w-1/3" 
+            href={project.repoLink}
+            target="_blank"
+            >
             <Github className="w-4" />
           </a>
         </div>
@@ -131,12 +91,74 @@ const AnimatedProject: React.FC<{
   );
 };
 
-const Projet: React.FC = () => {
+
+
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: "Gestionnaire de tâches",
+    description: "Une plateforme intuitive qui transforme la gestion des projets d'équipe. Cette application élimine la complexité en offrant un espace centralisé où les équipes peuvent prioriser leur travail, visualiser les progrès et atteindre leurs objectifs plus efficacement. Développée avec une stack moderne pour des performances et une fiabilité optimales.",
+    technologies: ["HTML", "Node.js", "Tailwind CSS","TypeScript"],
+    demoLink: "https://www.loom.com/share/6e2f071b8bf4446c959319605fbfab0e?sid=3b658254-4c4e-43ed-b238-095df103ec3c",
+    repoLink: "https://github.com/Jo-194/GESTION-",
+    image: gestionTaskImg,
+  },
+  {
+    id: 2,
+    title: "Plateforme E-commerce Full-Stack",
+    description: "Développement d'une boutique en ligne complète et dynamique. Cette application full-stack allie un frontend réactif et moderne construit avec React et Tailwind CSS à un backend robuste développé avec Node.js, ExpressJS et TypeScript pour offrir une expérience d'achat fluide et sécurisée.",
+    technologies: ["html","css","Tailwind CSS","React","ExpressJS" ,"TypeScript", "nodeJS"],
+    demoLink: "https://www.loom.com/share/abb94f14c0d849a6840560d257c1b239?sid=0aed6334-fae7-4205-ade3-7530ad4d1529",
+    repoLink: "https://github.com/ConradeDev/projetEcommerceSimplon",
+    image: plateformShop,
+  },
+  {
+    id: 3,
+    title: "Portfolio interactif",
+    description: "Création d'une expérience en ligne unique qui sert à la fois de vitrine et de démonstration de compétences. Ce portfolio allie un design soigné, une ergonomie intuitive et des performances optimisées, le tout construit avec les technologies modernes React, TypeScript et Tailwind CSS pour un résultat professionnel et engageant.",
+    technologies:  ["HTML", "JavaScript","react","Tailwind css","TypeScript"],
+    demoLink: "#",
+    repoLink: "https://github.com/ConradeDev/portFolioModern",
+    image: portFolioImg,
+  },
+  {
+    id: 4,
+    title: "Jeu de Devinette de Nombre",
+    description: "Développement d'un jeu interactif et ludique où le joueur doit trouver un nombre mystère généré aléatoirement. Une interface intuitive, des indices en temps réel et un compteur de tentatives rendent l'expérience engageante et addictive.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    demoLink: "https://www.loom.com/share/17237ccbd80542af8404f59a6f4fcf99?sid=1b90ec66-f3c0-45a8-b5ee-0aed0d4c380e",
+    repoLink: "https://github.com/ConradeDev/gameNumber",
+    image: gameNumberImg,
+  },
+  // {
+  //   id: 5,
+  //   title: "Système de réservation de salles",
+  //   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
+  //   technologies: ["Next.js", "MongoDB", "Chakra UI"],
+  //   demoLink: "#",
+  //   repoLink: "#",
+  //   image: img5,
+  // },
+  // {
+  //   id: 6,
+  //   title: "Analyseur de sentiment",
+  //   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae magni deserunt debitis recusandae ab harum totam, eum facilis et ratione officia ut inventore aspernatur",
+  //   technologies: ["Python", "Flask", "NLTK"],
+  //   demoLink: "#",
+  //   repoLink: "#",
+  //   image: img6,
+  // },
+];
+
+const ProjetPortfolio: React.FC = () => {
   const listRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
   const [keyboardNav, setKeyboardNav] = useState<boolean>(false);
   const [topGradientOpacity, setTopGradientOpacity] = useState<number>(0);
   const [bottomGradientOpacity, setBottomGradientOpacity] = useState<number>(1);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
@@ -162,12 +184,15 @@ const Projet: React.FC = () => {
           e.preventDefault();
           // Action supplémentaire si nécessaire
         }
+      } else if (e.key === "Escape" && isExpanded) {
+        e.preventDefault();
+        handleImageClick(null);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedIndex]);
+  }, [selectedIndex, isExpanded]);
 
   useEffect(() => {
     if (!keyboardNav || selectedIndex < 0 || !listRef.current) return;
@@ -198,32 +223,31 @@ const Projet: React.FC = () => {
 
   const handleProjectSelect = (project: Project, index: number) => {
     setSelectedIndex(index);
-    // Ajoutez ici d'autres actions si nécessaire
   };
 
-
-
-  const [selectedId, setSelectedId] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleImageClick = (id) => {
-    if (!isExpanded) {
+  const handleImageClick = (id: number | null) => {
+    if (id !== null) {
       setSelectedId(id);
       setIsExpanded(true);
     } else {
       setIsExpanded(false);
+      setTimeout(() => setSelectedId(null), 300);
     }
   };
 
+  // Trouver le projet sélectionné pour l'overlay
+ const selectedProject = projects.find(project => project.id === selectedId); 
+
   return (
-    <div className="w-full mt-2  ">
+    <div className="w-full mt-2">
       <Title title="Mes Projets" />
       
       <div className="relative w-full max-w-4xl mx-auto">
         <div
           ref={listRef}
-          className=" p-4 scrollbar-thin scrollbar-thumb-[#222] scrollbar-track-[#060010]"
+          className="p-4 "
           onScroll={handleScroll}
+          // style={{ maxHeight: "80vh", overflowY: "auto" }}
         >
           {projects.map((project, index) => (
             <AnimatedProject
@@ -231,6 +255,7 @@ const Projet: React.FC = () => {
               project={project}
               index={index}
               onSelect={handleProjectSelect}
+              onImageClick={handleImageClick}
               isSelected={selectedIndex === index}
               delay={index * 0.1}
             />
@@ -247,68 +272,68 @@ const Projet: React.FC = () => {
           style={{ opacity: bottomGradientOpacity }}
         ></div>
 
-
-          {/* Overlay pour l'image agrandie */}
-          <AnimatePresence>
-            {isExpanded && (
-              <motion.div
-                className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-pointer max-h-screen"
-                onClick={() => handleImageClick(null)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <div>
-                  {/* Close Button */}
-                  <div className=" flex justify-end p-4 rigt-0">
-                    <button onClick={() => handleImageClick(null)}>
-                      <X className="h-6 w-6 text-gray-600" />
-                    </button>
-                  </div>
-
-                  {projects.map((project) => {
-                    if (project.id === selectedId) {
-                      return (
-                        <motion.div
-                          key={project.id}
-                          layoutId={`project-${project.id}`}
-                          className="relative w-full max-w-4xl h-auto mt-4"
-                          onClick={(e) => e.stopPropagation()}
-                          initial={{ scale: 0.8 }}
-                          animate={{
-                            scale: 1,
-                            transition: {
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            },
-                          }}
-                          exit={{ scale: 0.8 }}
-                        >
-                          <motion.img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-auto max-h-[80vh] object-cover rounded-lg mt-10"
-                          />
-                          <motion.h2
-                            className="mt-4 text-white text-2xl text-center"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                          >
-                            {project.title}
-                          </motion.h2>
-                        </motion.div>
-                      )
-                    }
-                  })}
+        {/* Overlay pour l'image agrandie */}
+        <AnimatePresence>
+          {isExpanded && selectedId && selectedProject && (
+            <motion.div
+              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-pointer"
+              onClick={() => handleImageClick(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <div className="w-full max-w-4xl max-h-full overflow-auto">
+                {/* Close Button */}
+                <div className="flex justify-end p-4 sticky top-0 bg-black/70 rounded-lg">
+                  <button 
+                    onClick={() => handleImageClick(null)}
+                    className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+                  >
+                    <X className="h-6 w-6 text-white" />
+                  </button>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
+                <motion.div
+                  layoutId={`image-container-${selectedProject.id}`}
+                  className="relative w-full h-auto"
+                  onClick={(e) => e.stopPropagation()}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{
+                    scale: 1,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    },
+                  }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                >
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-auto max-h-[70vh] object-contain rounded-lg mx-auto"
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <h2 className="mt-4 text-white text-2xl text-center">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="mt-2 text-gray-300 text-center">
+                    {selectedProject.description}
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
 };
 
-export default Projet;
+export default ProjetPortfolio;

@@ -11,7 +11,7 @@ import imgNEXT from "../assets/techno/next-js.webp";
 import imgPRISMA from "../assets/techno/prisma.webp";
 
 import google from "../assets/companies/google.png";
-import meta from "../assets/companies/meta.webp";
+import simplon from "../assets/companies/simplonLogo.jpg";
 // import amazon from "../assets/companies/amazon.png";
 
 import { motion, useInView, Variants } from "motion/react";
@@ -34,9 +34,9 @@ const experiences = [
     id: 1,
     role: "Software Engineer",
     company: "Google",
-    period: "Sep 2024 - Présent",
+    period: "Sep 2024 - Oct 2024",
     description: [
-      "Développement de nouvelles fonctionnalités pour Google Maps.",
+      "Développement de nouvelles fonctionnalités pour Google.",
       "Optimisation des performances de l'application.",
     ],
     image: google,
@@ -50,7 +50,7 @@ const experiences = [
       "Création d'une plateforme interne de collaboration pour les équipes.",
       "Mise en place d'une architecture scalable et optimisée.",
     ],
-    image: meta,
+    image: simplon,
   },
   // {
   //   id: 3,

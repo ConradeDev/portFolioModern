@@ -1,4 +1,4 @@
-import { Container, Facebook, Instagram, Linkedin, PhoneCall } from "lucide-react";
+import { Container, Facebook, Github, Instagram, Linkedin, PhoneCall } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -34,6 +34,13 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="hover:text-gray-50">
             <Linkedin className="h-5 w-5" />
+          </a>
+          <a
+            href="https://github.com/ConradeDev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-50">
+            <Github className="h-5 w-5" />
           </a>
         </div>
         <div className="md:w-1/2">

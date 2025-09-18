@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin,  } from "lucide-react";
+import { Facebook, Github, Instagram, Linkedin,  } from "lucide-react";
 
 const Topbar = () => {
   return (
@@ -12,19 +12,19 @@ const Topbar = () => {
             className="hover:text-gray-50">
             <Facebook className="h-5 w-5" />
           </a>
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-50">
-            <Instagram className="h-5 w-5" />
-          </a>
           <a 
             href="https://www.linkedin.com/in/conrade-bossoudaho-89a009243"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-50">
             <Linkedin className="h-5 w-5" />
+          </a>
+                    <a
+            href="https://github.com/ConradeDev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-50">
+            <Github className="h-5 w-5" />
           </a>
         </div>
         <div className="text-sm text-center flex-grow">
