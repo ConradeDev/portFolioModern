@@ -1,6 +1,6 @@
 import { Container, Facebook, Github, Instagram, Linkedin, PhoneCall } from "lucide-react";
 
-const Footer = () => {
+const Footers = () => {
   return (
     <footer className="footer footer-center  p-10 flex flex-col-reverse md:flex-row ">
       <aside className="md:w-1/3">
@@ -55,6 +55,11 @@ const Footer = () => {
       </nav>
 
     </footer>
-  );
-};
-export default Footer;
+  )
+}
+
+export default Footers;
+
+
+
+

@@ -6,7 +6,7 @@ import About from "./components/About"
 import Contact from "./components/contact"
 import Diplome from "./components/Diplome"
 import Experience from "./components/experience"
-import Footer from "./components/Footer"
+import Footer from "./components/Footers"
 import Header from "./components/Hearder"
 import Home from "./components/Home"
 
