@@ -2,15 +2,15 @@
 
 
   import { motion, useAnimation, useInView, useScroll } from "motion/react"
-import About from "../src/components/About"
-import Contact from "../src/components/contact"
-import Diplome from "../src/components/Diplome"
-import Experience from "../src/components/experience"
-import Footer from "../src/components/Footer"
-import Header from "../src/components/Hearder"
-import Home from "../src/components/Home"
+import About from "./components/About"
+import Contact from "./components/contact"
+import Diplome from "./components/Diplome"
+import Experience from "./components/experience"
+import Footer from "./components/Footer"
+import Header from "./components/Hearder"
+import Home from "./components/Home"
 
-import ProjetPortfolio from "../src/components/ProjetPortofolio"
+import ProjetPortfolio from "./components/ProjetPortofolio"
 import { useEffect, useRef } from "react"
 
 
